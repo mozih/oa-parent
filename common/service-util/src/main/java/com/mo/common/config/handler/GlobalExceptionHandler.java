@@ -1,6 +1,6 @@
-package com.mo.common.handler;
+package com.mo.common.config.handler;
 
-import com.mo.common.execption.MoException;
+import com.mo.common.config.execption.MoException;
 import com.mo.common.result.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

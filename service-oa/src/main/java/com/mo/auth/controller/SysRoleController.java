@@ -1,11 +1,9 @@
 package com.mo.auth.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mo.auth.service.SysRoleService;
-import com.mo.auth.service.SysUserRoleService;
-import com.mo.common.execption.MoException;
+import com.mo.common.config.execption.MoException;
 import com.mo.common.result.Result;
 import com.mo.model.system.SysRole;
 import com.mo.vo.system.AssginRoleVo;
@@ -13,11 +11,9 @@ import com.mo.vo.system.SysRoleQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.border.CompoundBorder;
 import java.util.List;
 
 /**

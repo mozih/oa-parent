@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mo.auth.service.SysUserRoleService;
 import com.mo.auth.service.SysUserService;
 import com.mo.common.result.Result;
+import com.mo.common.utils.MD5;
 import com.mo.model.system.SysUser;
 import com.mo.vo.system.SysUserQueryVo;
 import io.swagger.annotations.Api;
@@ -63,6 +64,8 @@ public class SysUserController {
     @ApiOperation(value = "保存用户")
     @PostMapping("save")
     public Result save(@RequestBody SysUser user) {
+        //使用md5对密码进行加密
+        user.setPassword(MD5.encrypt(user.getPassword()));
         sysUserService.save(user);
         return Result.ok();
     }
@@ -70,6 +73,8 @@ public class SysUserController {
     @ApiOperation(value = "更新用户")
     @PutMapping("update")
     public Result updateById(@RequestBody SysUser user) {
+        //使用md5对密码进行加密
+        user.setPassword(MD5.encrypt(user.getPassword()));
         sysUserService.updateById(user);
         return Result.ok();
     }

@@ -1,4 +1,4 @@
-package com.mo.common.execption;
+package com.mo.common.config.execption;
 
 import com.mo.common.result.ResultCodeEnum;
 import lombok.Data;
