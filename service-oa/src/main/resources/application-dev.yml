@@ -3,6 +3,7 @@ server:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #查看日志
+  mapper-locations: classpath:com/mo/auth/mapper/xml/*.xml #指定xml文件位置
 
 spring:
   datasource:
