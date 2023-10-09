@@ -3,7 +3,7 @@ package com.mo.auth.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mo.model.system.SysMenu;
 import com.mo.vo.system.AssginMenuVo;
-import com.mo.vo.system.AssginRoleVo;
+import com.mo.vo.system.RouterVo;
 
 import java.util.List;
 
@@ -24,4 +24,8 @@ public interface SysMenuService extends IService<SysMenu> {
     List<SysMenu> findMenuById(Long roleId);
     //角色分配菜单
     void doAssign(AssginMenuVo assginMenuVo);
+    //根据用户id查询出用户可操作的菜单列表
+    List<RouterVo> findUserMenuListByUserId(Long userId);
+    //根据用户id查询出用户可操作的按钮列表
+    List<String> findUserBtnByUserId(Long userId);
 }

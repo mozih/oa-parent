@@ -64,8 +64,6 @@ public class SysUserController {
     @ApiOperation(value = "保存用户")
     @PostMapping("save")
     public Result save(@RequestBody SysUser user) {
-        //使用md5对密码进行加密
-        user.setPassword(MD5.encrypt(user.getPassword()));
         sysUserService.save(user);
         return Result.ok();
     }
