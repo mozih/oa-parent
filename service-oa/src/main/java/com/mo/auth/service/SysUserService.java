@@ -14,4 +14,6 @@ import com.mo.model.system.SysUser;
 public interface SysUserService extends IService<SysUser> {
     //根据用户id更新状态
     void updateStatus(Long id,Integer status);
+    //根据用户名查询对象
+    SysUser getUserByUserName(String username);
 }

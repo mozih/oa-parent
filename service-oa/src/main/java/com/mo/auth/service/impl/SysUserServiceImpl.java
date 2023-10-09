@@ -24,4 +24,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUser.setStatus(status);
         baseMapper.updateById(sysUser);
     }
+
+    @Override
+    public SysUser getUserByUserName(String username) {
+        return baseMapper.selectOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername,username));
+    }
 }
