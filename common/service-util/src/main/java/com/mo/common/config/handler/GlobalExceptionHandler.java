@@ -2,9 +2,12 @@ package com.mo.common.config.handler;
 
 import com.mo.common.config.execption.MoException;
 import com.mo.common.result.Result;
+import com.mo.common.result.ResultCodeEnum;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 /**
  * author mozihao
@@ -34,5 +37,15 @@ public class GlobalExceptionHandler {
     public Result error(MoException e){
         e.printStackTrace();
         return Result.fail().code(e.getCode()).message(e.getMessage());
+    }
+    /**
+     * spring security异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseBody
+    public Result error(AccessDeniedException e) throws AccessDeniedException {
+        return Result.build(null, ResultCodeEnum.PERMISSION);
     }
 }
