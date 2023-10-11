@@ -6,11 +6,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mo.model.process.ProcessTemplate;
 import com.mo.model.process.ProcessType;
 import com.mo.process.mapper.OaProcessTemplateMapper;
+import com.mo.process.service.OaProcessService;
 import com.mo.process.service.OaProcessTemplateService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mo.process.service.OaProcessTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ import java.util.List;
 public class OaProcessTemplateServiceImpl extends ServiceImpl<OaProcessTemplateMapper, ProcessTemplate> implements OaProcessTemplateService {
     @Autowired
     private OaProcessTypeService processTypeService;
+    @Autowired
+    private OaProcessService processService;
 
     //查询审批模板及审批类型名称
     @Override
@@ -51,7 +55,9 @@ public class OaProcessTemplateServiceImpl extends ServiceImpl<OaProcessTemplateM
         processTemplate.setStatus(1);
         baseMapper.updateById(processTemplate);
 
-        //TODO 流程定义部署
-
+        //流程定义部署
+        if (!StringUtils.isEmpty(processTemplate.getProcessDefinitionPath())){
+            processService.deployByZip(processTemplate.getProcessDefinitionPath());
+        }
     }
 }
