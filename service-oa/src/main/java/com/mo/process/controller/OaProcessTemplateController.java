@@ -57,7 +57,7 @@ public class OaProcessTemplateController {
             return Result.fail();
         }
         Map<String, Object> map = new HashMap<>();
-        map.put("processDefinitionPath","process/"+filename);
+        map.put("processDefinitionPath","processes/"+filename);
         map.put("processDefinitionKey",filename.substring(0,filename.lastIndexOf(".")));
         return Result.ok(map);
     }
