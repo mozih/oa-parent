@@ -8,6 +8,7 @@ import com.mo.auth.service.SysUserService;
 import com.mo.model.process.ProcessTemplate;
 import com.mo.model.system.SysUser;
 import com.mo.process.mapper.OaProcessMapper;
+import com.mo.process.service.OaProcessRecordService;
 import com.mo.process.service.OaProcessService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mo.process.service.OaProcessTemplateService;
@@ -54,6 +55,8 @@ public class OaProcessServiceImpl extends ServiceImpl<OaProcessMapper, Process> 
     private RuntimeService runtimeService;
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private OaProcessRecordService  processRecordService;
 
     //审批管理列表
     @Override
@@ -117,6 +120,9 @@ public class OaProcessServiceImpl extends ServiceImpl<OaProcessMapper, Process> 
         process.setProcessInstanceId(processInstance.getId());
         process.setDescription("等待"+ StringUtils.join(nameList.toArray(),",") +"审批");
         baseMapper.updateById(process);
+
+        //记录操作审批信息记录
+        processRecordService.record(process.getId(),1,"发起申请");
     }
 
 }
